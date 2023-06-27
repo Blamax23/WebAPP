@@ -1,0 +1,148 @@
+﻿body {
+    padding: 0;
+    margin: 0;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.slider-frame {
+    overflow: hidden;
+    height: 800px;
+    width: 98.9vw;
+    margin: 0;
+}
+
+/*---------- SLIDE ANIMATION --------------*/
+
+
+@keyframes slide_animation {
+    0% {
+        left: 0vw;
+    }
+
+    10% {
+        left: 0vw;
+    }
+
+    17% {
+        left: 100vw;
+    }
+
+    27% {
+        left: 100vw;
+    }
+
+    34% {
+        left: 200vw;
+    }
+
+    44% {
+        left: 200vw;
+    }
+
+    51% {
+        left: 300vw;
+    }
+
+    61% {
+        left: 300vw;
+    }
+
+    68% {
+        left: 400vw;
+    }
+
+    78% {
+        left: 400vw;
+    }
+
+    85% {
+        left: 500vw;
+    }
+
+    95% {
+        left: 500vw;
+    }
+}
+
+@-webkit-keyframes slide_animation {
+    0% {
+        left: 0vw;
+    }
+
+    10% {
+        left: 0vw;
+    }
+
+    17% {
+        left: 100vw;
+    }
+
+    27% {
+        left: 100vw;
+    }
+
+    34% {
+        left: 200vw;
+    }
+
+    44% {
+        left: 200vw;
+    }
+
+    51% {
+        left: 300vw;
+    }
+
+    61% {
+        left: 300vw;
+    }
+
+    68% {
+        left: 400vw;
+    }
+
+    78% {
+        left: 400vw;
+    }
+
+    85% {
+        left: 500vw;
+    }
+
+    95% {
+        left: 500vw;
+    }
+}
+
+.slide-images {
+    width: 600vw;
+    height: 800px;
+    margin: 0 0 0 -500vw;
+    position: relative;
+    -webkit-animation-name: slide_animation;
+    animation-name: slide_animation;
+    -webkit-animation-duration: 33s;
+    animation-duration: 33s;
+    -webkit-animation-iteration-count: infinite;
+    animation-iteration-count: infinite;
+    -webkit-animation-direction: alternate;
+    animation-direction: alternate;
+    -webkit-animation-play-state: running;
+    animation-play-state: running;
+}
+
+.img-container {
+    height: 800px;
+    width: 100vw;
+    position: relative;
+    float: left;
+}
+
+.img-container img {
+    width: 100%;
+}
+
+.body-content{
+    padding: 0;
+}
+
