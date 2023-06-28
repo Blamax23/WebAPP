@@ -4,60 +4,161 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+@{ 
+    string[] equipes = { "Atlanta Hawks", "Boston Celtics", "Brooklyn Nets", "Charlotte Hornets", "Chicago Bulls", "Cleveland Cavaliers",
+"Detroit Pistons",
+"New York Knicks",
+"Philadelphia 76ers",
+"Toronto Raptors",
+"Miami Heat",
+"Orlando Magic",
+"Washington Wizards",
+"Indiana Pacers",
+"Milwaukee Bucks",
+"Denver Nuggets",
+"Minnesota Timberwolves",
+"Oklahoma City Thunder",
+"Portland Trail Blazers",
+"Utah Jazz",
+"Dallas Mavericks",
+"Houston Rockets",
+"Memphis Grizzlies",
+"New Orleans Pelicans",
+"San Antonio Spurs",
+"Golden State Warriors",
+"Los Angeles Clippers",
+"Los Angeles Lakers",
+"Phoenix Suns",
+"Sacramento Kings"};
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.NOM_Joueur)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.PRENOM_Joueur)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.AGE_Joueur)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.NUMERO_Joueur)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.POSTE_Joueur)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Equipes.NOM_Equipe)
-        </th>
-        <th></th>
-    </tr>
+    string[] lib =
+            {
+"ATL",
+"BOS",
+"BRK",
+"CHA",
+"CHI",
+"CLE",
+"DET",
+"NYK",
+"PHI",
+"TOR",
+"MIA",
+"ORL",
+"WAS",
+"IND",
+"MIL",
+"DEN",
+"MIN",
+"OKC",
+"POR",
+"UTA",
+"DAL",
+"HOU",
+"MEM",
+"NO",
+"SA",
+"GSW",
+"LAC",
+"LAL",
+"PHX",
+"SAC"
+            };
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.NOM_Joueur)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PRENOM_Joueur)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.AGE_Joueur)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.NUMERO_Joueur)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.POSTE_Joueur)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Equipes.NOM_Equipe)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID_Joueur }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID_Joueur }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID_Joueur })
-        </td>
-    </tr>
+    int equipeChoisie;
+    string request = Request.QueryString["equipe"];
+
+    int.TryParse(request, out equipeChoisie);
 }
+<div class="all">
+    <h2>Joueurs</h2>
 
-</table>
+    <div class="libEquipes">
+        @for (int i = 0; i < equipes.Length; i++)
+        {
+            <a class="btnEquipe" href="@Url.Action("Index", new { equipe = i + 1})" class="@(lib[i])" @(equipeChoisie == i ? "style=\"background-color: black; color: white; \"" : "")>@(lib[i])</a>
+        }
+    </div>
+
+    <div class="table">
+        @foreach (var item in Model)
+        {
+            <div class="joueur">
+                <div class="photo">
+                    <img src="~/Images/Joueurs/joueur_@(item.ID_Joueur).jpg" height="250px" />
+                </div>
+                <div class="infoJoueur">
+                    <div class="nom">@(item.PRENOM_Joueur) @(item.NOM_Joueur)</div>
+                    <div class="equipe">@(item.Equipes.NOM_Equipe)</div>
+                </div>
+            </div>
+        }
+
+    </div>
+</div>
+
+
+<style>
+    * {
+        margin: 0;
+    }
+
+    body {
+        margin: 0;
+    }
+
+    .all {
+        padding-top: 150px;
+    }
+
+        .all h2 {
+            font-size: 50px;
+            margin-left: 50px;
+        }
+
+    .table {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+    }
+
+    .joueur {
+        width: max-content;
+        margin: 15px;
+    }
+
+    .photo img {
+        margin: auto;
+    }
+
+    .nom {
+        font-weight: bold;
+        text-transform: uppercase;
+        text-align: center;
+        margin-top: 10px;
+    }
+
+    .equipe {
+        text-align: center;
+    }
+
+    .libEquipes{
+
+        margin: 25px;
+    }
+
+    .btnEquipe{
+        text-decoration : none;
+        color: black;
+        font-size: 17px;
+        border: 1px solid black;
+        padding: 5px;
+        border-radius: 5px;
+        background-color: rgb(230 230 230);
+    }
+
+    .btnEquipe:hover{
+        background-color: black;
+        color: white;
+    }
+</style>

@@ -27,7 +27,7 @@ namespace WebApplication4.Models
         public byte NUMERO_Joueur { get; set; }
         public string POSTE_Joueur { get; set; }
         public int ID_Equipe { get; set; }
-    
+
         public virtual Equipes Equipes { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Match_joueur> Match_joueur { get; set; }

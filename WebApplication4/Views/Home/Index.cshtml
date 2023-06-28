@@ -60,8 +60,8 @@
         <div class="usa">
             <h3>Découvrez la NBA</h3>
             <div class="map">
-                <img class="ouest" src="~/Images/Autre/OUEST.png" height="215px"/>
-                <img class="est" src="~/Images/Autre/EST.png" height="200px"/>
+                <a href="@Url.Action("Index", "Equipes", new { conference = "ouest"})"><img class="ouest" src="~/Images/Autre/OUEST.png" height="215px" /></a>
+                <a href="@Url.Action("Index", "Equipes", new { conference = "est"})"><img class="est" src="~/Images/Autre/EST.png" height="200px" /></a>
             </div>
             <div class="articles">
                 <div class="articleNBA">

@@ -9,23 +9,18 @@
 <body>
     <nav>
         <div class="logoNBA">
-            <img src="Images/Logos/NBA.png" height="50vh"/>
+            <img src="~/Images/Logos/NBA.png" height="50vh"/>
         </div>
         <ul>
-            <li>Accueil</li>
-            <li>Equipes</li>
-            <li>Joueurs</li>
-            <li>Matchs</li>
+            <li>@Html.ActionLink("Accueil", "Index", "Home")</li>
+            <li>@Html.ActionLink("Equipes", "Index", "Equipes", new { conference = "ouest" }, null)</li>
+            <li>@Html.ActionLink("Joueurs", "Index", "Joueurs")</li>
+            <li>@Html.ActionLink("Matchs", "Index", "Matchs")</li>
+            <li>@Html.ActionLink("5 de légende", "Index", "CinqLegende")</li>
         </ul>
     </nav>
 
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
-    </div>
+    @RenderBody()
 
     <script src="~/Scripts/jquery-3.4.1.min.js"></script>
     <script src="~/Scripts/bootstrap.min.js"></script>
@@ -33,6 +28,10 @@
 </html>
 
 <style>
+    *:hover {
+        cursor: url("../../Images/Autre/ball.png"), pointer;
+    }
+
     nav {
         background-color: black;
         color: white;
@@ -65,6 +64,11 @@
         height: min-content;
     }
 
+    a {
+        text-decoration: none;
+        color: white;
+    }
+
     li:before {
         position: absolute;
         width: 100%;
@@ -75,9 +79,5 @@
         background: #FFF;
         opacity: 0.3;
         transition: all 0.3s;
-    }
-
-    li:hover:before {
-        height: 100%;
     }
 </style>

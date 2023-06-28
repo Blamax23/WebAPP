@@ -2,56 +2,180 @@
 
 @{
     ViewBag.Title = "Index";
+
+    string request = Request.QueryString["conference"];
 }
 
-<h2>Index</h2>
+<div class="all">
+    <h2>Equipes de  NBA :</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.NOM_Equipe)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.LIB_Equipe)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.NOMBRE_VICTOIRES_Equipe)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.NOMBRE_DEFAITES_Equipe)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CONFERENCE_Equipe)
-        </th>
-        <th></th>
-    </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.NOM_Equipe)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.LIB_Equipe)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.NOMBRE_VICTOIRES_Equipe)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.NOMBRE_DEFAITES_Equipe)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CONFERENCE_Equipe)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID_Equipe }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID_Equipe }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID_Equipe })
-        </td>
-    </tr>
-}
 
-</table>
+    <div class="paramBar">
+        <div class="formSearch">
+            @using (Html.BeginForm("Index", "equipes", FormMethod.Get))
+            {
+                <input type="hidden" name="conference" value="@(request)" />
+                <input type="text" name="nom" placeholder="Nom de l'équipe">
+                <button type="submit">
+                    <img src="~/Images/loupe.png" height="20px" />
+                </button>
+            }
+        </div>
+        <div class="choixConference">
+            <a href="@Url.Action("Index", new { conference = "ouest"})" class="conf ouest">CONFERENCE OUEST</a>
+            <a href="@Url.Action("Index", new { conference = "est"})" class="conf est">CONFERENCE EST</a>
+        </div>
+    </div>
+
+
+    @if (Model != null && Model.Any())
+    {
+        if (request == "est")
+        {
+            <h4>Conférence Est :</h4>
+            <div>
+                @foreach (var item in Model.Where(e => e.CONFERENCE_Equipe == "EST"))
+                {
+                    <a href="@Url.Action("Details", new { id = item.ID_Equipe })" class="team-card">
+                        <img src="~/Images/Equipes/@(item.ID_Equipe).png" />
+                        <h3>@Html.DisplayFor(modelItem => item.NOM_Equipe)</h3>
+                    </a>
+                }
+            </div>
+        }
+
+        if (request == "ouest")
+        {
+            <h4>Conférence Ouest :</h4>
+            <div>
+                @foreach (var item in Model.Where(e => e.CONFERENCE_Equipe == "OUEST"))
+                {
+                    <a href="@Url.Action("Details", new { id = item.ID_Equipe })" class="team-card">
+                        <img src="~/Images/Equipes/@(item.ID_Equipe).png" />
+                        <h3>@Html.DisplayFor(modelItem => item.NOM_Equipe)</h3>
+                    </a>
+                }
+            </div>
+        }
+
+
+    }
+    else
+    {
+        <h1 id="phrase">Aucune équipe trouvée.</h1>
+    }
+</div>
+
+
+
+
+<style>
+    * {
+        margin: 0;
+    }
+
+    .all {
+        padding-top: 100px;
+    }
+
+    .team-card {
+        display: inline-block;
+        width: 30%;
+        margin: 10px;
+        padding: 10px;
+        text-align: center;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+        .team-card img {
+            max-width: 100px;
+            max-height: 100px;
+        }
+
+    h3 {
+        margin-top: 10px;
+        font-size: 18px;
+        color: #333;
+        text-decoration: none;
+    }
+
+    h4 {
+        font-size: 24px;
+        font-weight: bold;
+        margin: 10px 0;
+        text-align: center;
+    }
+
+    a {
+        text-decoration: none;
+    }
+
+    h2 {
+        text-align: center;
+        font-size: 40px;
+        font-weight: bold;
+    }
+
+    .formSearch{
+        display: flex;
+        flex-wrap: nowrap;
+    }
+
+    input[type="text"] {
+        border: 1px solid #ccc;
+        border-right: none;
+        border-radius: 5px;
+        border-bottom-right-radius : 0px;
+        border-top-right-radius : 0px;
+        font-size: 16px;
+        height: 40px;
+    }
+
+    /* Style pour le bouton */
+    button[type="submit"] {
+        position: absolute;
+        background-color: rgb(171, 21, 48);
+        color: white;
+        border: 1px solid #ccc;
+        border-left: none;
+        border-radius: 5px;
+        border-top-left-radius: 0px;
+        border-bottom-left-radius: 0px;
+        font-size: 10px;
+        cursor: pointer;
+        height: 45px;
+        margin-left: -4px;
+        margin-bottom: -10px;
+    }
+
+    .conf {
+        background-color : rgb(230 230 230);
+        border: 1px solid black;
+        padding: 5px;
+        border-radius: 5px;
+    }
+
+    .est {
+        background-color: rgb(171, 21, 48);
+    }
+
+    .ouest {
+        background-color: rgb(47, 68, 135);
+    }
+
+    .paramBar{
+        display: flex;
+        flex-wrap: nowrap;
+        justify-content: space-between;
+        padding: 0px 25px;  
+    }
+
+    .choixConference{
+        padding: 25px 0px;
+    }
+
+
+</style>

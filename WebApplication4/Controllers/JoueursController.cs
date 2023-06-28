@@ -16,9 +16,19 @@ namespace WebApplication4.Controllers
         private NBAEntities db = new NBAEntities();
 
         // GET: Joueurs
-        public async Task<ActionResult> Index()
+        public async Task<ActionResult> Index(string equipe)
         {
             var joueurs = db.Joueurs.Include(j => j.Equipes);
+
+            if (!string.IsNullOrEmpty(equipe))
+            {
+                int equipeId;
+                if (int.TryParse(equipe, out equipeId))
+                {
+                    joueurs = joueurs.Where(j => j.ID_Equipe == equipeId);
+                }
+            }
+
             return View(await joueurs.ToListAsync());
         }
 

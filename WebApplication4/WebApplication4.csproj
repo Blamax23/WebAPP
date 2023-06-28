@@ -127,6 +127,7 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\CinqLegendeController.cs" />
     <Compile Include="Controllers\EquipesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\JoueursController.cs" />
@@ -199,6 +200,11 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\CinqLegende\Create.cshtml" />
+    <Content Include="Views\CinqLegende\Delete.cshtml" />
+    <Content Include="Views\CinqLegende\Details.cshtml" />
+    <Content Include="Views\CinqLegende\Edit.cshtml" />
+    <Content Include="Views\CinqLegende\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

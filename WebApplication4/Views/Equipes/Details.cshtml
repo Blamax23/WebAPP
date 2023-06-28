@@ -4,70 +4,164 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<style>
+    .details-container {
+        margin-top: 20px;
+    }
 
-<div>
-    <h4>Equipes</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.NOM_Equipe)
-        </dt>
+        .details-container h2 {
+            font-size: 24px;
+            margin-bottom: 10px;
+            color: darkviolet;
+        }
 
-        <dd>
-            @Html.DisplayFor(model => model.NOM_Equipe)
-        </dd>
+        .details-container h4 {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
 
-        <dt>
-            @Html.DisplayNameFor(model => model.LIB_Equipe)
-        </dt>
+        .details-container hr {
+            margin-top: 10px;
+            margin-bottom: 20px;
+            border: 0;
+            border-top: 1px solid #ccc;
+        }
 
-        <dd>
-            @Html.DisplayFor(model => model.LIB_Equipe)
-        </dd>
+        .details-container dl {
+            margin-bottom: 20px;
+        }
 
-        <dt>
-            @Html.DisplayNameFor(model => model.NOMBRE_VICTOIRES_Equipe)
-        </dt>
+        .details-container dt {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
 
-        <dd>
-            @Html.DisplayFor(model => model.NOMBRE_VICTOIRES_Equipe)
-        </dd>
+        .details-container dd {
+            margin-left: 20px;
+            margin-bottom: 10px;
+        }
 
-        <dt>
-            @Html.DisplayNameFor(model => model.NOMBRE_DEFAITES_Equipe)
-        </dt>
+        .details-container ul {
+            margin-top: 5px;
+            margin-left: 20px;
+        }
 
-        <dd>
-            @Html.DisplayFor(model => model.NOMBRE_DEFAITES_Equipe)
-        </dd>
+            .details-container ul li {
+                margin-bottom: 5px;
+            }
 
-        <dt>
-            @Html.DisplayNameFor(model => model.CONFERENCE_Equipe)
-        </dt>
+        .details-container p {
+            margin-top: 20px;
+        }
 
-        <dd>
-            @Html.DisplayFor(model => model.CONFERENCE_Equipe)
-        </dd>
-        <dt>
-            Joueurs associés à cette équipe
-        </dt>
+        .details-container a {
+            margin-right: 10px;
+        }
 
-        <dd>
-            <ul>
-                @foreach (var player in Model.Joueurs)
-                {
-                    <li>
-                        @Html.DisplayFor(modelItem => player.NOM_Joueur)
-                        -- @Html.DisplayFor(modelItem => player.POSTE_Joueur)
-                    </li>
-                }
-            </ul>
-        </dd>
+    .image-container {
+        text-align: center;
+    }
 
-    </dl>
+        .image-container img {
+            display: inline-block;
+        }
+
+    .details-table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+        .details-table td {
+            border: 2px solid #000;
+            padding: 8px;
+        }
+
+        .details-table dt {
+            font-weight: bold;
+        }
+
+        .details-table dd {
+            margin-left: 0;
+            margin-bottom: 10px;
+        }
+
+    .team-logo-cell {
+        text-align: center;
+    }
+
+    .team-logo {
+        width: 60%;
+        height: 60%;
+    }
+</style>
+
+<div class="details-container">
+    <h2>Details</h2>
+
+    <div class="fullEquipe">
+        <h4>@Html.DisplayFor(model => model.NOM_Equipe)</h4>
+        <table class="details-table">
+            <tr>
+                <td class="team-logo-cell">
+                    <img class="team-logo" src="~/Images/Equipes/@(Model.ID_Equipe).png" alt="@Model.NOM_Equipe Logo" />
+                </td>
+                <td>
+                    <dl>
+                        <dt>@Html.DisplayNameFor(model => model.LIB_Equipe)</dt>
+                        <dd>@Html.DisplayFor(model => model.LIB_Equipe)</dd>
+
+                        <dt>@Html.DisplayNameFor(model => model.NOMBRE_VICTOIRES_Equipe)</dt>
+                        <dd>@Html.DisplayFor(model => model.NOMBRE_VICTOIRES_Equipe)</dd>
+
+                        <dt>@Html.DisplayNameFor(model => model.NOMBRE_DEFAITES_Equipe)</dt>
+                        <dd>@Html.DisplayFor(model => model.NOMBRE_DEFAITES_Equipe)</dd>
+
+                        <dt>@Html.DisplayNameFor(model => model.CONFERENCE_Equipe)</dt>
+                        <dd>@Html.DisplayFor(model => model.CONFERENCE_Equipe)</dd>
+
+                        <dt>Les joueurs de l'équipe :</dt>
+                        <dd>
+                            <ul>
+                                @foreach (var player in Model.Joueurs)
+                                {
+                                    <li class="content">
+                                        @Html.DisplayFor(modelItem => player.NOM_Joueur)
+                                        -- @Html.DisplayFor(modelItem => player.POSTE_Joueur)
+                                    </li>
+                                }
+                            </ul>
+                        </dd>
+                    </dl>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.ID_Equipe }, new { @class = "btn btn-primary" })
+        @Html.ActionLink("Back to List", "Index", new { }, new { @class = "btn btn-secondary" })
+    </p>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.ID_Equipe }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+
+<style>
+    *{
+        margin: 0;
+    }
+
+    body{
+        margin: 0;
+    }
+
+    .fullEquipe{
+        padding-top: 50px;
+    }
+
+    .details-container{
+        margin: 0;
+    }
+
+    .content{
+        color: black;
+    }
+</style>

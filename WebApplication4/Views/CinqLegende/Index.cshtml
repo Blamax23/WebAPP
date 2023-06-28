@@ -1,0 +1,94 @@
+﻿@model IEnumerable<WebApplication4.Models.Joueurs>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="legende">
+    @foreach (var item in Model)
+    {
+        if (item.NOM_Joueur == "DESCHAMPT" || item.NOM_Joueur == "PERBET" || item.NOM_Joueur == "BLANC" || item.NOM_Joueur == "MAISONNEUVE" || item.NOM_Joueur == "BREDIN")
+        {
+            <div class="joueur @(item.NOM_Joueur)">
+                <div class="photo">
+                    <img src="~/Images/Joueurs/joueur_@(item.ID_Joueur).jpg" height="125px" />
+                </div>
+                <div class="infoJoueur">
+                    <div class="nom">@(item.PRENOM_Joueur) @(item.NOM_Joueur)</div>
+                    <div class="equipe">@(item.Equipes.NOM_Equipe)</div>
+                </div>
+            </div>
+        }
+
+    }
+
+    <img src="~/Images/Autre/terrain.png" height="800px" />
+</div>
+
+
+
+
+<style>
+    * {
+        margin: 0;
+        overflow: hidden;
+    }
+
+    .legende {
+        padding-left: 100px;
+    }
+
+    .joueur {
+        width: max-content;
+        margin: 15px;
+        position: absolute;
+        background-color: black;
+        color: white;
+    }
+
+    .photo img {
+        margin: auto;
+    }
+
+    .nom {
+        font-weight: bold;
+        text-transform: uppercase;
+        text-align: center;
+        margin-top: 10px;
+    }
+
+    .equipe {
+        text-align: center;
+    }
+
+    .BREDIN {
+        margin-left: 380px;
+        margin-top: 250px;
+    }
+
+    .MAISONNEUVE {
+        margin-left: 850px;
+        margin-top: 200px;
+    }
+
+    .PERBET {
+        margin-left: 600px;
+        margin-top: 150px;
+    }
+
+    .DESCHAMPT {
+        margin-left: 750px;
+        margin-top: 400px;
+    }
+
+    .BLANC {
+        margin-left: 500px;
+        margin-top: 500px;
+    }
+
+    .photo{
+        width: max-content;
+        margin: auto;
+
+    }
+</style>
